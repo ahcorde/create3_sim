@@ -84,14 +84,11 @@ def generate_launch_description():
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([dock_description_launch]),
             condition=IfCondition(LaunchConfiguration('spawn_dock')),
-            # The robot starts docked
-            launch_arguments={'gazebo': 'ignition'}.items(),
         ),
 
         # Robot description
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([robot_description_launch]),
-            launch_arguments={'gazebo': 'ignition'}.items()
         ),
 
         # Spawn Create 3

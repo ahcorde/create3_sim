@@ -10,9 +10,6 @@ from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitut
 from launch_ros.actions import Node
 
 ARGUMENTS = [
-    DeclareLaunchArgument('gazebo', default_value='classic',
-                          choices=['classic', 'ignition'],
-                          description='Which gazebo simulation to use'),
     DeclareLaunchArgument('visualize_rays', default_value='true',
                           choices=['true', 'false'],
                           description='Enable/disable ray visualization'),
@@ -30,7 +27,6 @@ def generate_launch_description():
 
     # Launch Configurations
     visualize_rays = LaunchConfiguration('visualize_rays')
-    gazebo_simulator = LaunchConfiguration('gazebo')
     namespace = LaunchConfiguration('namespace')
 
     state_publisher = Node(
@@ -43,7 +39,6 @@ def generate_launch_description():
             {'robot_description':
              Command(
                 ['xacro', ' ', dock_xacro_file, ' ',
-                 'gazebo:=', gazebo_simulator, ' ',
                  'namespace:=', namespace, ' ',
                  'visualize_rays:=', visualize_rays])},
         ],

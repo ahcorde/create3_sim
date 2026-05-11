@@ -13,7 +13,6 @@
 #include "irobot_create_msgs/action/led_animation.hpp"
 #include "irobot_create_msgs/msg/audio_note_vector.hpp"
 #include "irobot_create_msgs/msg/button.hpp"
-#include "irobot_create_msgs/msg/interface_buttons.hpp"
 #include "irobot_create_msgs/msg/led_color.hpp"
 #include "irobot_create_msgs/msg/lightring_leds.hpp"
 #include "rclcpp/rclcpp.hpp"
@@ -59,13 +58,6 @@ private:
     const std::shared_ptr<
       rclcpp_action::ServerGoalHandle<irobot_create_msgs::action::AudioNoteSequence>> goal_handle);
 
-  // Publish aggregated detections on timer_'s frequency
-  rclcpp::TimerBase::SharedPtr buttons_timer_;
-
-  // Publishers
-  std::shared_ptr<
-    rclcpp::Publisher<irobot_create_msgs::msg::InterfaceButtons>> buttons_publisher_{nullptr};
-
   // Subscribers
   rclcpp::Subscription<irobot_create_msgs::msg::LightringLeds>::SharedPtr lightring_subscription_;
   rclcpp::Subscription<irobot_create_msgs::msg::AudioNoteVector>::SharedPtr audio_subscription_;
@@ -76,21 +68,11 @@ private:
   rclcpp_action::Server<irobot_create_msgs::action::AudioNoteSequence>::SharedPtr
     audio_note_sequence_action_server_;
 
-  // Gazebo simulator being used
-  std::string gazebo_;
-
-  // Topic to publish interface buttons to
-  std::string buttons_publisher_topic_;
-
   // Topic to subscribe to light ring vector
   std::string lightring_subscription_topic_;
   // Topic to subscribe to audio note vector
   std::string audio_subscription_topic_;
 
-  // Message to store the interface buttons
-  irobot_create_msgs::msg::InterfaceButtons buttons_msg_;
-
-  const std::string base_frame_ {"base_link"};
   std::mutex led_animation_params_mutex_;
   rclcpp::Duration led_animation_end_duration_;
   rclcpp::Time led_animation_start_time_;

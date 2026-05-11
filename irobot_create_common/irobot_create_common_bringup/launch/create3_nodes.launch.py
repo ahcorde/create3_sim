@@ -12,9 +12,6 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 
 ARGUMENTS = [
-    DeclareLaunchArgument('gazebo', default_value='classic',
-                          choices=['classic', 'ignition'],
-                          description='Which gazebo simulator to use'),
     DeclareLaunchArgument('namespace', default_value='',
                           description='Robot namespace'),
 ]
@@ -129,8 +126,7 @@ def generate_launch_description():
         name='ui_mgr',
         executable='ui_mgr',
         parameters=[ui_mgr_params_yaml_file,
-                    {'use_sim_time': True},
-                    {'gazebo': LaunchConfiguration('gazebo')}],
+                    {'use_sim_time': True}],
         output='screen',
     )
 
