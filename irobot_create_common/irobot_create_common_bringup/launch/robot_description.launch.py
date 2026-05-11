@@ -12,6 +12,8 @@ from launch_ros.actions import Node
 
 
 ARGUMENTS = [
+    DeclareLaunchArgument('gazebo', default_value='ignition',
+                          description='Kept for legacy reasons; only ignition is supported'),
     DeclareLaunchArgument('visualize_rays', default_value='false',
                           choices=['true', 'false'],
                           description='Enable/disable ray visualization'),
@@ -23,6 +25,7 @@ ARGUMENTS = [
 def generate_launch_description():
     pkg_create3_description = get_package_share_directory('irobot_create_description')
     xacro_file = PathJoinSubstitution([pkg_create3_description, 'urdf', 'create3.urdf.xacro'])
+    gazebo_simulator = LaunchConfiguration('gazebo')
     visualize_rays = LaunchConfiguration('visualize_rays')
     namespace = LaunchConfiguration('namespace')
 
@@ -36,6 +39,7 @@ def generate_launch_description():
             {'robot_description':
              Command(
                   ['xacro', ' ', xacro_file, ' ',
+                   'gazebo:=', gazebo_simulator, ' ',
                    'visualize_rays:=', visualize_rays, ' ',
                    'namespace:=', namespace])},
         ],

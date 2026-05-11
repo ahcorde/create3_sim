@@ -15,7 +15,7 @@ functional, while the 4 remaining ones are created as dummy links. -->
   <link name="${link_name}"/>
 </xacro:macro>
 
-<xacro:macro name="bumper" params="name:=bumper namespace parent_link:=base_link update_rate:=62.0 visual_mesh collision_mesh
+<xacro:macro name="bumper" params="name:=bumper namespace parent_link:=base_link update_rate:=62.0 gazebo:=ignition visual_mesh collision_mesh
   *origin *inertial">
   <xacro:property name="link_name" value="${name}"/>
   <xacro:property name="joint_name" value="${name}_joint"/>

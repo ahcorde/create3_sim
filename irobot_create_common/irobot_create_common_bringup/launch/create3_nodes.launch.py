@@ -12,6 +12,8 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 
 ARGUMENTS = [
+    DeclareLaunchArgument('gazebo', default_value='ignition',
+                          description='Kept for legacy reasons; only ignition is supported'),
     DeclareLaunchArgument('namespace', default_value='',
                           description='Robot namespace'),
 ]

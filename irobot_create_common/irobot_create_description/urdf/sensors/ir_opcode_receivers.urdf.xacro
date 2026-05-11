@@ -16,6 +16,7 @@
                                                   min_range:=0.015
                                                   update_rate:=62
                                                   visualize:=false
+                                                  gazebo:=ignition
                                                   *origin" >
 
     <xacro:property name="joint_name" value="${name}_joint" />
@@ -36,7 +37,7 @@
     <xacro:if value="${visualize}">
       <!-- Sensor 0 visualization -->
       <gazebo reference="${receiver_link_name}">
-        <xacro:ray_sensor sensor_name="sensor_0"
+        <xacro:ray_sensor sensor_name="sensor_0" gazebo="${gazebo}"
                       update_rate="1" visualize="${visualize}"
                       h_samples="${samples}" h_res="1.0" h_min_angle="-${sensor_0_fov/2}" h_max_angle="${sensor_0_fov/2}"
                       r_min="${min_range}" r_max="${sensor_0_range}" r_res="0.01"/>
@@ -44,7 +45,7 @@
 
       <!-- Sensor 1 visualization -->
       <gazebo reference="${receiver_link_name}">
-        <xacro:ray_sensor sensor_name="sensor_1"
+        <xacro:ray_sensor sensor_name="sensor_1" gazebo="${gazebo}"
                       update_rate="1" visualize="${visualize}"
                       h_samples="${samples}" h_res="1.0" h_min_angle="-${sensor_1_fov/2}" h_max_angle="${sensor_1_fov/2}"
                       r_min="${min_range}" r_max="${sensor_1_range}" r_res="0.01"/>

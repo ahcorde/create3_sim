@@ -51,7 +51,7 @@
     params="sensor_name update_rate visualize
             h_samples h_res h_min_angle h_max_angle
             v_samples:=1 v_res:=1 v_min_angle:=0 v_max_angle:=0
-            r_min r_max r_res">
+            r_min r_max r_res gazebo:=ignition">
     <sensor name="${sensor_name}" type="gpu_lidar">
       <update_rate>${update_rate}</update_rate>
       <visualize>${visualize}</visualize>
